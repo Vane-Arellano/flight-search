@@ -24,10 +24,10 @@ export interface Flight {
 
 export const FlightComponent = (props: {flight: Flight}) => {
     return (
-        <Card className="w-full bg-zinc-200/25 h-fit">
+        <Card className="w-full bg-zinc-200/25 h-fit hover:bg-slate-300/25">
             <CardContent className="flex flex-col justify-between gap-4">
                 <div className="flex flex-row justify-between">
-                    <div className="departure">
+                    <div className="departure text-left">
                         <PlaneTakeoffIcon size={20} className="text-blue-500"/>
                         <p className="text-xl font-semibold">{props.flight.deperture_time}</p>
                         <p>{props.flight.deperture_city} {props.flight.deperture_code}</p>
@@ -41,9 +41,8 @@ export const FlightComponent = (props: {flight: Flight}) => {
                         <div className="w-50 h-[2px] bg-blue-800/25"></div>
 
                     </div>
-                    <div className="arrival">
-                        <PlaneLandingIcon size={20} className="text-blue-500"/>
-
+                    <div className="arrival flex flex-col text-right items-right">
+                        <PlaneLandingIcon size={20} className="text-blue-500 self-end"/>
                         <p className="text-xl font-semibold">{props.flight.arraival_time}</p>
                         <p>{props.flight.arraival_city} {props.flight.arraival_code}</p>
                     </div>
