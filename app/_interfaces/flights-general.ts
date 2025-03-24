@@ -3,6 +3,7 @@ export interface Stop {
     stop_airport: string 
 }
 export interface Flight {
+    id: number
     deperture_city: string 
     deperture_code: string 
     deperture_time: string 
