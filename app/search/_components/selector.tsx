@@ -1,75 +1,43 @@
-import * as React from "react"
+"use client";
 
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
+import { Select, SelectTrigger, SelectContent, SelectItem } from "@/components/ui/select";
+import { useState } from "react";
 
-export function SelectScrollable({holder} : {holder: string}) {
+export const SelectScrollable = (props: {holder: string, options?: string[]}) => {
+  const [query, setQuery] = useState("");
+  const [selectedValue, setSelectedValue] = useState<string | null>(null);
+  
+  // Example list of options to filter
+  const options: string[] = ["MXN", "USD", "EUR"];
+
+  
+  
+  // Filter options based on query
+  const filteredOptions = options.filter(option =>
+    option.toLowerCase().includes(query.toLowerCase())
+  );
+  
   return (
-    <Select>
+    <Select onValueChange={(value: string) => setSelectedValue(value)}>
       <SelectTrigger className="w-full">
-        <SelectValue placeholder={holder} />
+        {selectedValue ? selectedValue : props.holder}
       </SelectTrigger>
       <SelectContent>
-        <SelectGroup>
-          <SelectLabel>North America</SelectLabel>
-          <SelectItem value="est">Eastern Standard Time (EST)</SelectItem>
-          <SelectItem value="cst">Central Standard Time (CST)</SelectItem>
-          <SelectItem value="mst">Mountain Standard Time (MST)</SelectItem>
-          <SelectItem value="pst">Pacific Standard Time (PST)</SelectItem>
-          <SelectItem value="akst">Alaska Standard Time (AKST)</SelectItem>
-          <SelectItem value="hst">Hawaii Standard Time (HST)</SelectItem>
-        </SelectGroup>
-        <SelectGroup>
-          <SelectLabel>Europe & Africa</SelectLabel>
-          <SelectItem value="gmt">Greenwich Mean Time (GMT)</SelectItem>
-          <SelectItem value="cet">Central European Time (CET)</SelectItem>
-          <SelectItem value="eet">Eastern European Time (EET)</SelectItem>
-          <SelectItem value="west">
-            Western European Summer Time (WEST)
+        <div className="px-2 py-1">
+          <input
+            type="text"
+            className="w-full p-2 rounded-md border border-gray-300"
+            placeholder="Search..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+        </div>
+        {filteredOptions.map((option, index) => (
+          <SelectItem key={index} value={option}>
+            {option}
           </SelectItem>
-          <SelectItem value="cat">Central Africa Time (CAT)</SelectItem>
-          <SelectItem value="eat">East Africa Time (EAT)</SelectItem>
-        </SelectGroup>
-        <SelectGroup>
-          <SelectLabel>Asia</SelectLabel>
-          <SelectItem value="msk">Moscow Time (MSK)</SelectItem>
-          <SelectItem value="ist">India Standard Time (IST)</SelectItem>
-          <SelectItem value="cst_china">China Standard Time (CST)</SelectItem>
-          <SelectItem value="jst">Japan Standard Time (JST)</SelectItem>
-          <SelectItem value="kst">Korea Standard Time (KST)</SelectItem>
-          <SelectItem value="ist_indonesia">
-            Indonesia Central Standard Time (WITA)
-          </SelectItem>
-        </SelectGroup>
-        <SelectGroup>
-          <SelectLabel>Australia & Pacific</SelectLabel>
-          <SelectItem value="awst">
-            Australian Western Standard Time (AWST)
-          </SelectItem>
-          <SelectItem value="acst">
-            Australian Central Standard Time (ACST)
-          </SelectItem>
-          <SelectItem value="aest">
-            Australian Eastern Standard Time (AEST)
-          </SelectItem>
-          <SelectItem value="nzst">New Zealand Standard Time (NZST)</SelectItem>
-          <SelectItem value="fjt">Fiji Time (FJT)</SelectItem>
-        </SelectGroup>
-        <SelectGroup>
-          <SelectLabel>South America</SelectLabel>
-          <SelectItem value="art">Argentina Time (ART)</SelectItem>
-          <SelectItem value="bot">Bolivia Time (BOT)</SelectItem>
-          <SelectItem value="brt">Brasilia Time (BRT)</SelectItem>
-          <SelectItem value="clt">Chile Standard Time (CLT)</SelectItem>
-        </SelectGroup>
+        ))}
       </SelectContent>
     </Select>
-  )
+  );
 }

@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label"
 import { DatePickerDemo } from "./date-picker"
 import { SelectScrollable } from "./selector"
 import {redirect} from "next/navigation"
-
+import { Checkbox } from "@/components/ui/checkbox"
 export function SearchForm({
   className,
   ...props
@@ -30,23 +30,27 @@ export function SearchForm({
               </div>
               <div className="grid gap-2">
                 <Label>Departure Airport</Label>
-                <SelectScrollable holder="Select departure airport"/>
+                <SelectScrollable holder='Select Departure Airport' />
               </div>
               <div className="grid gap-2">
                 <Label>Arrival Airport</Label>
-                <SelectScrollable holder="Select arrival airport"/>
+                <SelectScrollable holder='Select Arrival Airport' />
               </div>
               <div className="grid gap-2">
                 <Label>Departure Date</Label>
                 <DatePickerDemo/>
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="password">Return Date</Label>
+                <Label >Return Date</Label>
                 <DatePickerDemo/>
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="password">Currency</Label>
-                <SelectScrollable holder="Select desired currency"/>
+                <Label >Currency</Label>
+                <SelectScrollable holder='Currency'/>
+              </div>
+              <div className="flex flex-row gap-4">
+                <Checkbox/>
+                <Label >Non-stop</Label>
               </div>
               <Button type="submit" className="w-full">
                 Search

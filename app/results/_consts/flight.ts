@@ -1,5 +1,4 @@
-import { Flight } from "../_components/flight-component";
-
+import { Flight } from "@/app/_interfaces/flights-general"
 export const demoFlights: Flight[] = [
     {
         deperture_city: "San Francisco",

@@ -1,26 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { PlaneIcon, PlaneTakeoffIcon, PlaneLandingIcon } from "lucide-react"
-interface Stop { 
-    stop_time: string
-    stop_airport: string 
-}
-export interface Flight {
-    deperture_city: string 
-    deperture_code: string 
-    deperture_time: string 
-    deperture_day: string 
-    arraival_city: string
-    arraival_code: string 
-    arraival_time: string 
-    arraival_day: string 
-    airline: string
-    total_price: string 
-    currency: string
-    price_per_person: string 
-    number_stops: number
-    total_time: string 
-    stops?: Stop[]
-}
+import { Flight } from "@/app/_interfaces/flights-general"
+import { Stop } from "@/app/_interfaces/flights-general"
 
 export const FlightComponent = (props: {flight: Flight}) => {
     return (

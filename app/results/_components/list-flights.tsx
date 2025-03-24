@@ -1,7 +1,7 @@
 'use client'
 import { FlightComponent } from "./flight-component"
 import { demoFlights } from "../_consts/flight"
-import { Flight } from "./flight-component"
+import { Flight } from "@/app/_interfaces/flights-general"
 import { redirect } from "next/navigation"
 
 export const FlightList = () => {
